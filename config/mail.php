@@ -45,6 +45,10 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
+        'from' => [
+            'address' => env('MAIL_USERNAME', 'hello@example.com'),
+            'name' => env('TERAKA', 'Example'),
+        ],
 
         'ses' => [
             'transport' => 'ses',

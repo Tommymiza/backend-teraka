@@ -7,8 +7,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-use function PHPSTORM_META\type;
-
 class PetitGroupeController extends Controller
 {
     /**
@@ -48,9 +46,9 @@ class PetitGroupeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PetitGroupe $petitGroupe)
+    public function getAll()
     {
-        //
+        return $this->sendResponse(['all'=>Petitgroupe::all()], "Succès");
     }
     /**
      * Update the specified resource in storage.

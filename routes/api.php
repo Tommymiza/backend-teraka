@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChampionController;
+use App\Http\Controllers\MembreController;
 use App\Http\Controllers\PetitGroupeController;
 use App\Http\Controllers\PrePetitGroupeController;
 use App\Http\Controllers\UserController;
@@ -38,11 +39,14 @@ Route::prefix('champion')->group(function () {
 
 /* ######-ROUTE PETIT GROUPE-###### */
 Route::prefix('petit-groupe')->group(function () {
-    Route::middleware(['auth:sanctum', 'ability:champion'])->group(function () {
+    Route::middleware(['auth:sanctum', 'ability:champion,personnel,admin'])->group(function () {
         Route::post('/add', [PetitGroupeController::class, "store"]);
+        Route::post("/add-member", [MembreController::class, "store"]);
+        Route::get("/all", [PetitGroupeController::class, "index"]);
+        Route::get("/all-champion/{id}", [PetitGroupeController::class, "getAllFromChampion"]);
+        Route::get("/all-members/{id}", [PetitGroupeController::class, "getAllMember"]);
     });
-    Route::middleware(["auth:sanctum", "abilities:personnel"])->group(function (){
-        Route::get("/all", [PetitGroupeController::class, "getAll"]);
+    Route::middleware(["auth:sanctum", "ability:personnel, admin"])->group(function (){
     });
 });
 

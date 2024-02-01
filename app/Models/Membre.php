@@ -10,6 +10,7 @@ class Membre extends Model
     use HasFactory;
 
     protected $fillable = [
+        "id_pg",
         "nom",
         "age",
         "genre",
@@ -20,7 +21,6 @@ class Membre extends Model
         "village",
         "occupation",
         "niveau_etude",
-        "avoir_terrain",
         "email",
         "phone",
         "note"

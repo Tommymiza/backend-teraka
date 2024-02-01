@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membre;
 use App\Models\Petitgroupe;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class PetitGroupeController extends Controller
      */
     public function index()
     {
-        //
+        return $this->sendResponse(['all' => Petitgroupe::all()], "Succès");
     }
 
     /**
@@ -46,9 +47,13 @@ class PetitGroupeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function getAll()
+    public function getAllFromChampion($id)
     {
-        return $this->sendResponse(['all'=>Petitgroupe::all()], "Succès");
+        return $this->sendResponse(['all' => Petitgroupe::all()->where('id_champion', '==', $id)], "Succès");
+    }
+    public function getAllMember($id)
+    {
+        return $this->sendResponse(['all' => Membre::all()->where('id_pg', '==', $id)], "Succès");
     }
     /**
      * Update the specified resource in storage.

@@ -64,7 +64,7 @@ Route::get('/fichier/{file}', function ($file) {
         return Storage::get($file);
     } else {
         // Si le fichier n'existe pas, retourner une réponse appropriée (par exemple 404 Not Found)
-        return response()->json(['message' => 'File not found.'], 404);
+        return response()->json(['message' => 'File not found.', 'chemin' => $file], 404);
     }
 });
 

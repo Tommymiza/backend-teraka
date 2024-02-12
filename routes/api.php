@@ -66,7 +66,7 @@ Route::get('/fichier/{file}', function ($file) {
         // Si le fichier n'existe pas, retourner une réponse appropriée (par exemple 404 Not Found)
         return response()->json(['message' => 'File not found.', 'chemin' => $file], 404);
     }
-});
+})->where('file', '.*');
 
 /* ######-ROUTE PETIT GROUPE-###### */
 Route::prefix('petit-groupe')->group(function () {

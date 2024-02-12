@@ -57,7 +57,7 @@ Route::prefix('quantificateur')->group(function () {
         Route::delete('/delete/{id}', [QuantificateurController::class, 'delete']);
     });
 });
-Route::get('/storage/{file}', function ($file) {
+Route::get('/fichier/{file}', function ($file) {
     // Vérifier si le fichier existe dans le dossier "storage"
     if (Storage::exists($file)) {
         // Récupérer le contenu du fichier et le retourner comme réponse

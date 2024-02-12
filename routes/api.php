@@ -7,6 +7,7 @@ use App\Http\Controllers\PrePetitGroupeController;
 use App\Http\Controllers\QuantificateurController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /* ######-ROUTE PERSONNEL-###### */
 
@@ -55,6 +56,16 @@ Route::prefix('quantificateur')->group(function () {
         Route::put('/put/{id}', [QuantificateurController::class, 'update']);
         Route::delete('/delete/{id}', [QuantificateurController::class, 'delete']);
     });
+});
+Route::get('/storage/{file}', function ($file) {
+    // Vérifier si le fichier existe dans le dossier "storage"
+    if (Storage::exists($file)) {
+        // Récupérer le contenu du fichier et le retourner comme réponse
+        return Storage::get($file);
+    } else {
+        // Si le fichier n'existe pas, retourner une réponse appropriée (par exemple 404 Not Found)
+        return response()->json(['message' => 'File not found.'], 404);
+    }
 });
 
 /* ######-ROUTE PETIT GROUPE-###### */

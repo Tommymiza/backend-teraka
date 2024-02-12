@@ -48,8 +48,14 @@ class MembreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Membre $membre)
+    public function destroy($id)
     {
-        //
+        try {
+            Membre::findOrFail($id)->delete();
+            return $this->sendResponse([], "Suppression réussie");
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return $this->sendError("Erreur lors de la suppression");
+        }
     }
 }

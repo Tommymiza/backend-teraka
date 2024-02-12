@@ -9,6 +9,13 @@ class Petitgroupe extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "id_pg";
+
+    public function membres()
+    {
+        return $this->hasMany(Membre::class, "id_pg");
+    }
+
     protected $fillable = [
         "id_champion",
         "id_staff_verificateur",
@@ -27,5 +34,10 @@ class Petitgroupe extends Model
         "nb_semis",
         "type_semis",
         "photo_pepiniere",
+        "nb_arbre",
+        "type_arbre",
+        "plante_arbre",
+        "plantation_date",
+        "photo_arbre",
     ];
 }

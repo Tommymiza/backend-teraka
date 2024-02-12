@@ -9,6 +9,8 @@ class Membre extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "id_membre";
+
     protected $fillable = [
         "id_pg",
         "nom",
